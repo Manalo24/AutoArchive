@@ -13,7 +13,9 @@ import AutoMobile.AutoController;
 
 public class Archivio {
 	private List <Auto> ArchivioAuto;
-	private List <Auto> srcAuto=new  ArrayList<Auto>();;
+	private List <Auto> srcAuto=new  ArrayList<Auto>();
+	private List <Auto> autoCanc=new  ArrayList<Auto>();
+
 	private List <String> words = new ArrayList<String>();
 	public Archivio() {
 		
@@ -26,6 +28,9 @@ public class Archivio {
 	}
 	public List <Auto> getArchivio(){
 		return ArchivioAuto;
+	}
+	public List <Auto> getArchivio2(){
+		return autoCanc;
 	}
 	public List <String> getOrdine(){
 		return words;
@@ -42,15 +47,30 @@ public class Archivio {
 		}
 		return null;	
 	}
+	public void modificaAuto(String targa) {
+		for(int i = 0;i<ArchivioAuto.size();i++) {
+			if(ArchivioAuto.get(i).getTarga().equalsIgnoreCase(targa)) {
+				Auto a = ArchivioAuto.get(i);
+			}
+		}
+		
+	}
 	public void deleteAuto(String targa) {
-		Iterator<Auto> i=ArchivioAuto.iterator();
+		for (int i =0;i<ArchivioAuto.size();i++) {
+			if (targa.equalsIgnoreCase(ArchivioAuto.get(i).getTarga())) {
+				autoCanc.add(ArchivioAuto.get(i));
+				ArchivioAuto.remove(i);
+			}
+		}
+		/*Iterator<Auto> i=ArchivioAuto.iterator();
 		
 	    while (i.hasNext()) {
 	    	
 	    	if (targa.equalsIgnoreCase(i.next().getTarga())) {
+	    		
 	    		i.remove();
 	    	}
-	    }
+	    }*/
 	}
 	public void ordineAuto() {
 		Collections.sort(ArchivioAuto);
@@ -72,6 +92,15 @@ public class Archivio {
 	    while (i.hasNext()) {
 	    	System.out.println(i.next());
 	    }
+	}
+	public void stampaCanc( ) {
+		Iterator<Auto> i=autoCanc.iterator();
+	    while (i.hasNext()) {
+	    	System.out.println(i.next());
+	    }
+	}
+	public void clear() {
+		autoCanc.clear();
 	}
 	
 	
